@@ -14,25 +14,22 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
-from drf_spectacular.views import SpectacularSwaggerView, SpectacularAPIView
-from rest_framework.routers import DefaultRouter
 
+from django.contrib import admin
+from rest_framework.routers import DefaultRouter
 
 from onlinestore_project import settings
 from users.views import UserView
+from django.urls import path
+
 
 router = DefaultRouter()
-router.register(r'users', UserView)
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 ]
-if settings.USE_BROWSABLE_API:
-    urlpatterns += [
-        path("__docs__/", SpectacularAPIView.as_view(), name="__docs__"),
-        path("", SpectacularSwaggerView.as_view(url_name="__docs__")),
-    ]
 
 urlpatterns += router.urls
+
+

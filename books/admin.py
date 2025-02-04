@@ -7,4 +7,4 @@ from books.models import Book
 
 @admin.register(Book)
 class BookAdmin(admin.ModelAdmin):
-    list_display = ("publication_date", "title")
+    list_display = ("publication_date", "title", "category")
