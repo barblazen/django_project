@@ -8,10 +8,12 @@ if TYPE_CHECKING:
 
 # Create your models here.
 class Book(models.Model):
+    objects = None
     price = models.FloatField()
     publication_date = models.DateField()
     title = models.CharField(max_length=100)
     author = models.CharField(max_length=100)
     category = models.ForeignKey('Category', on_delete=models.CASCADE, null=True, blank=True),
-    review = models.CharField(max_length=250)
     is_available = models.BooleanField()
+
+
